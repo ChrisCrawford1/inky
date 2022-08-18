@@ -1,0 +1,110 @@
+{% extends "bs_theme_base.html" %}
+
+{% block title %}Dashboard {% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Inky Dashboard</h1>
+    <p class="text-sm-center text-muted">Overview of the current state of the collection.</p>
+    <div class="">
+        <div class="row mt-5">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Pens
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ pen_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-pen-nib fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                    Inks
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ ink_count }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-wine-bottle fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Total Value
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">£{{ total_value }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Average Per Pen
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">£{{ average }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calculator fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Most Recent Purchases</h6>
+                    </div>
+                    <div class="card-body">
+                        {% for purchase in last_five_purchased %}
+                            <h4 class="small font-weight-bold">{{ purchase.full_name }} <span class="float-right">{{ purchase.purchased_date }}</span></h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+           <div class="col-lg-6 mb-4">
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Most Expensive Purchases</h6>
+                    </div>
+                    <div class="card-body">
+                        {% for pen in highest_prices %}
+                            <h4 class="small font-weight-bold">{{ pen.full_name }} <span class="float-right">£{{ pen.purchase_price|floatformat:0 }}</span></h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

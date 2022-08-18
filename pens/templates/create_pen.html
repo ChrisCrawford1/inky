@@ -1,0 +1,14 @@
+{% extends "bs_theme_base.html" %}
+
+{% block title %}Create New Pen{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-center">Create New Pen</h2>
+        <form action="/pens/create" method="POST" enctype="multipart/form-data" class="text-center">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success btn-block col-md-4 m-auto">Create</button>
+        </form>
+    </div>
+{% endblock %}

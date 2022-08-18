@@ -1,0 +1,26 @@
+{% extends "bs_theme_base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="vh-100 d-flex align-items-center">
+        <form method="POST" class="mt-5 m-auto">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                       maxlength="150" required id="id_username" class="form-control" placeholder="Username">
+            </div>
+
+            <div class="mb-4">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" autocomplete="current-password" required id="id_password"
+                       placeholder="***********" class="form-control">
+            </div>
+            {% if form.non_field_errors %}
+                <p class="text-danger">Invalid Username or Password.</p>
+            {% endif %}
+            <button type="submit" class="btn btn-outline-success btn-block mt-3 mb-3">Login</button>
+        </form>
+    </div>
+{% endblock %}

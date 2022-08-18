@@ -1,0 +1,32 @@
+{% extends "bs_theme_base.html" %}
+
+{% block title %}Pens{% endblock %}
+
+
+{% block content %}
+    <h2 class="text-center mb-4">Pen Collection</h2>
+    <table class="table table-striped col-md-10 m-auto">
+        <thead>
+        <tr>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Model</th>
+            <th scope="col">Nib Size</th>
+            <th scope="col"><i class="fas fa-cog"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pen in pens %}
+            <tr>
+                <th scope="row">{{ pen.brand.name }}</th>
+                <td>{{ pen.name }}</td>
+                <td>{{ pen.nib_size_full }}</td>
+                <td>
+                    <a href="{% url "show_pen" id=pen.id %}"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="pl-1 text-danger"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

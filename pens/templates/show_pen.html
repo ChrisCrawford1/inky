@@ -1,0 +1,46 @@
+{% extends "bs_theme_base.html" %}
+
+{% block title %}{{ pen.name }}{% endblock %}
+
+{% block content %}
+    <div class="container m-auto col-md-10">
+        <div class="">
+            <div class="text-center">
+                {% if not pen.image %}
+                    <img src="https://via.placeholder.com/700x350" alt="" class="rounded">
+                {% else %}
+                    <img src="{{ pen.image.url }}" alt="" class="rounded" width="700" height="350">
+                {% endif %}
+
+            </div>
+            <h2 class="text-center mt-4" id="toggle-edit">{{ pen.brand.name }} {{ pen.name }}</h2>
+            {% if pen.description == None  %}
+                <p class="text-center">No Description Set.</p>
+            {% else %}
+                <p class="text-center">{{ pen.description }}</p>
+            {% endif %}
+        </div>
+        <div class="d-none mb-5" id="edit-form">
+            <h1 class="text-3xl text-center">Edit Pen</h1>
+            <form method="POST" action="{% url "update_pen" id=pen.id %}" enctype="multipart/form-data"  class="text-center">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let editButton = document.getElementById("toggle-edit");
+        let editForm = document.getElementById("edit-form");
+        editButton.addEventListener("click", function () {
+            if (editForm.classList.contains("d-none")) {
+                editForm.classList.remove("d-none");
+            } else {
+                editForm.classList.add("d-none");
+            }
+        });
+    </script>
+{% endblock %}
