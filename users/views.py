@@ -15,7 +15,7 @@ def home(request):
     for pen in pens:
         total_value += pen.purchase_price
 
-    if pens.count() is not 0:
+    if pens.count() != 0:
         average_price = round(total_value / pens.count())
 
     return render(
