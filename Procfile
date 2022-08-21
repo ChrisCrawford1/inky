@@ -1,0 +1,1 @@
+web: gunicorn inky.wsgi --log-file -
